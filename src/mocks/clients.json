@@ -1,0 +1,22 @@
+{
+  "clients": [
+    {
+      "company": "System Srl",
+      "address": "Corrientes 1243",
+      "phone": "4263322",
+      "boilerA": "5",
+      "email": "system@rosario.com",
+      "reminder": true,
+      "id": 5
+    },
+    {
+      "company": "prueb",
+      "address": "1234",
+      "phone": "123",
+      "boilerA": "213",
+      "email": "das",
+      "reminder": false,
+      "id": 6
+    }
+  ]
+}

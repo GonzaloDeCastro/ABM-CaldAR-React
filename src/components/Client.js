@@ -17,6 +17,7 @@ const Client = ({ client, onDelete, onToggle }) => {
       <p>Adress: {client.address}</p>
       <p>Phone: {client.phone}</p>
       <p>Boiler A: {client.boilerA}</p>
+      <p>Email: {client.email}</p>
     </div>
   );
 };

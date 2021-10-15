@@ -6,6 +6,7 @@ const AddClient = ({ onAdd }) => {
   const [address, setAdress] = useState('');
   const [phone, setPhone] = useState('');
   const [boilerA, setBoilerA] = useState('');
+  const [email, setEmail] = useState('');
   const [reminder, setReminder] = useState(false);
 
   const onSubmit = (e) => {
@@ -16,12 +17,13 @@ const AddClient = ({ onAdd }) => {
       return;
     }
 
-    onAdd({ company, address, phone, boilerA, reminder });
+    onAdd({ company, address, phone, boilerA, email, reminder });
 
     setCompany('');
     setAdress('');
     setPhone('');
     setBoilerA('');
+    setEmail('');
     setReminder(false);
   };
   return (
@@ -60,6 +62,15 @@ const AddClient = ({ onAdd }) => {
           placeholder='Stock'
           value={boilerA}
           onChange={(e) => setBoilerA(e.target.value)}
+        />
+      </div>
+      <div className='form-control'>
+        <label>Email</label>
+        <input
+          type='text'
+          placeholder='Email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
