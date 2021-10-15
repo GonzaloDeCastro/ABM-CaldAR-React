@@ -10,7 +10,7 @@ const App = () => {
   const [clients, setClients] = useState([]);
 
   // Add Client
-  const addTask = async (client) => {
+  const addClient = async (client) => {
     const res = await fetch(`http://localhost:5000/clients`, {
       method: 'POST',
       headers: {
@@ -85,7 +85,7 @@ const App = () => {
         onAdd={() => setShowAddClient(!showAddClient)}
         showAdd={showAddClient}
       />
-      {showAddClient && <AddClient onAdd={addTask} />}
+      {showAddClient && <AddClient onAdd={addClient} />}
       {clients.length > 0 ? (
         <Clients
           clients={clients}

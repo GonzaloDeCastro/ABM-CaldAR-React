@@ -1,11 +1,11 @@
 const Client = ({ client, onDelete, onToggle }) => {
   return (
-    <div
-      className={`client ${client.reminder ? 'reminder' : ''}`}
-      onDoubleClick={() => onToggle(client.id)}
-    >
+    <div className={`client ${client.reminder ? 'reminder' : ''}`}>
       <h3>
         Company: {client.company}
+        <button className='btn' onClick={() => onToggle(client.id)}>
+          Edit
+        </button>
         <button
           className='btn'
           style={{ fontWeight: 'bold', color: 'red', cursor: 'pointer' }}
