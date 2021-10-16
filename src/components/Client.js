@@ -24,7 +24,13 @@ const Client = ({ client, onDelete, onEdit }) => {
       <p>Phone: {client.phone}</p>
       <p>Boiler A: {client.boilerA}</p>
       <p>Email: {client.email}</p>
-      {showEditClient && <EditClient />}
+      {showEditClient && (
+        <EditClient
+          clientToEdit={client}
+          onEdit={onEdit}
+          setShowEditClient={setShowEditClient}
+        />
+      )}
     </div>
   );
 };

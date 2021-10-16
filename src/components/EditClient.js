@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 
-const EditClient = ({ onEdit }) => {
-  const [company, setCompany] = useState('');
-  const [address, setAdress] = useState('');
-  const [phone, setPhone] = useState('');
-  const [boilerA, setBoilerA] = useState('');
-  const [email, setEmail] = useState('');
-  const [reminder, setReminder] = useState(false);
+const EditClient = ({ clientToEdit, onEdit, setShowEditClient }) => {
+  const [company, setCompany] = useState(clientToEdit.company);
+  const [address, setAdress] = useState(clientToEdit.address);
+  const [phone, setPhone] = useState(clientToEdit.phone);
+  const [boilerA, setBoilerA] = useState(clientToEdit.boilerA);
+  const [email, setEmail] = useState(clientToEdit.email);
+  const [reminder, setReminder] = useState(clientToEdit.reminder);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -16,9 +16,18 @@ const EditClient = ({ onEdit }) => {
       alert('Please complete all fields');
       return;
     }
-
-    onEdit({ company, address, phone, boilerA, email, reminder });
+    onEdit({
+      id: clientToEdit.id,
+      company,
+      address,
+      phone,
+      boilerA,
+      email,
+      reminder
+    });
+    return setShowEditClient(false);
   };
+
   return (
     <form className='add-form' onSubmit={onSubmit}>
       <div className='form-control'>

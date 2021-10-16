@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
-const Header = ({ tittle, onAdd, showAdd }) => {
+const Header = ({ tittle, toggleAdd, showAdd }) => {
   return (
     <header className='header'>
       <h1>{tittle}</h1>
       <Button
         color={showAdd ? 'red' : 'green'}
         text={showAdd ? 'Close form' : 'Open form'}
-        onClick={onAdd}
+        onClick={toggleAdd}
       />
     </header>
   );

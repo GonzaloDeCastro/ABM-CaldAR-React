@@ -3,11 +3,9 @@ import './App.css';
 import Header from './components/Header';
 import Clients from './components/Clients';
 import AddClient from './components/AddClient';
-/* import EditClient from './components/EditClient'; */
 
 const App = () => {
   const [showAddClient, setShowAddClient] = useState(false);
-  /*   const [showEditClient, setShowEditClient] = useState(false); */
 
   const [clients, setClients] = useState([]);
 
@@ -35,25 +33,21 @@ const App = () => {
   }, []);
 
   // Edit Client
-  const editClient = async (id) => {
-    const clientToEdit = await fetchTask(id);
-    const updTask = { ...clientToEdit, reminder: !clientToEdit.reminder };
+  const editClient = async (client) => {
+    /*  const clientToEdit = await fetchClient(client.id);
+    const upClient = { ...clientToEdit, reminder: !clientToEdit.reminder }; */
 
-    const res = await fetch(`http://localhost:5000/clients/${id}`, {
+    const res = await fetch(`http://localhost:5000/clients/${client.id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(updTask)
+      body: JSON.stringify(client)
     });
 
     const data = await res.json();
 
-    setClients(
-      clients.map((client) =>
-        client.id === id ? { ...client, reminder: data.reminder } : client
-      )
-    );
+    setClients(clients.map((x) => (x.id === client.id ? client : x)));
   };
 
   //Fetch Clients
@@ -66,7 +60,7 @@ const App = () => {
 
   //Fetch Client
 
-  const fetchTask = async (id) => {
+  const fetchClient = async (id) => {
     const res = await fetch(`http://localhost:5000/clients/${id}`);
     const data = await res.json();
     return data;
@@ -84,7 +78,7 @@ const App = () => {
   return (
     <div className='container'>
       <Header
-        onAdd={() => setShowAddClient(!showAddClient)}
+        toggleAdd={() => setShowAddClient(!showAddClient)}
         showAdd={showAddClient}
       />
       {showAddClient && <AddClient onAdd={addClient} />}
@@ -97,7 +91,6 @@ const App = () => {
       ) : (
         'No Clients'
       )}
-      {/* {showEditClient && <EditClient onEdit={addClient} />} */}
     </div>
   );
 };
