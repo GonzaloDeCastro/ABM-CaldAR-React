@@ -1,6 +1,6 @@
 import React from 'react';
 import Client from './Client';
-const Clients = ({ clients, onDelete, onToggle }) => {
+const Clients = ({ clients, onDelete, onEdit }) => {
   return (
     <div>
       {clients.map((client) => (
@@ -8,7 +8,7 @@ const Clients = ({ clients, onDelete, onToggle }) => {
           key={client.id}
           client={client}
           onDelete={onDelete}
-          onToggle={onToggle}
+          onEdit={onEdit}
         />
       ))}
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const EditClient = ({ onAdd }) => {
+const EditClient = ({ onEdit }) => {
   const [company, setCompany] = useState('');
   const [address, setAdress] = useState('');
   const [phone, setPhone] = useState('');
@@ -17,11 +17,12 @@ const EditClient = ({ onAdd }) => {
       return;
     }
 
-    onAdd({ company, address, phone, boilerA, email, reminder });
+    onEdit({ company, address, phone, boilerA, email, reminder });
   };
   return (
     <form className='add-form' onSubmit={onSubmit}>
       <div className='form-control'>
+        <h1>Edit Client</h1>
         <label>Company</label>
         <input
           type='text'
@@ -76,7 +77,7 @@ const EditClient = ({ onAdd }) => {
           onChange={(e) => setReminder(e.currentTarget.checked)}
         />
       </div>
-      <input type='submit' value='Confirm' className='btn btn-block' />
+      <input type='submit' value='Confirm Edit' className='btn btn-block' />
     </form>
   );
 };

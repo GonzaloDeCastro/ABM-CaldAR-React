@@ -1,9 +1,9 @@
-const Client = ({ client, onDelete, onToggle }) => {
+const Client = ({ client, onDelete, onEdit }) => {
   return (
     <div className={`client ${client.reminder ? 'reminder' : ''}`}>
       <h3>
         Company: {client.company}
-        <button className='btn' onClick={() => onToggle(client.id)}>
+        <button className='btn' onClick={onEdit}>
           Edit
         </button>
         <button

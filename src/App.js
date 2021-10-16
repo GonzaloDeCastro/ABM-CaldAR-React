@@ -3,9 +3,11 @@ import './App.css';
 import Header from './components/Header';
 import Clients from './components/Clients';
 import AddClient from './components/AddClient';
+import EditClient from './components/EditClient';
 
 const App = () => {
   const [showAddClient, setShowAddClient] = useState(false);
+  const [showEditClient, setShowEditClient] = useState(false);
 
   const [clients, setClients] = useState([]);
 
@@ -32,6 +34,28 @@ const App = () => {
     getClients();
   }, []);
 
+  // Edit Client
+  const editClient = async (id) => {
+    const clientToEdit = await fetchTask(id);
+    const updTask = { ...clientToEdit, reminder: !clientToEdit.reminder };
+
+    const res = await fetch(`http://localhost:5000/clients/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(updTask)
+    });
+
+    const data = await res.json();
+
+    setClients(
+      clients.map((client) =>
+        client.id === id ? { ...client, reminder: data.reminder } : client
+      )
+    );
+  };
+
   //Fetch Clients
 
   const fetchClients = async () => {
@@ -57,28 +81,6 @@ const App = () => {
     setClients(clients.filter((client) => client.id !== id));
   };
 
-  // Toggle Reminder
-  const toggleReminder = async (id) => {
-    const clientToToggle = await fetchTask(id);
-    const updTask = { ...clientToToggle, reminder: !clientToToggle.reminder };
-
-    const res = await fetch(`http://localhost:5000/clients/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(updTask)
-    });
-
-    const data = await res.json();
-
-    setClients(
-      clients.map((client) =>
-        client.id === id ? { ...client, reminder: data.reminder } : client
-      )
-    );
-  };
-
   return (
     <div className='container'>
       <Header
@@ -90,13 +92,13 @@ const App = () => {
         <Clients
           clients={clients}
           onDelete={deleteClient}
-          onToggle={toggleReminder}
+          onEdit={() => setShowEditClient(!showEditClient)}
         />
       ) : (
         'No Clients'
       )}
+      {showEditClient && <EditClient onEdit={editClient} />}
     </div>
   );
 };
-
 export default App;
