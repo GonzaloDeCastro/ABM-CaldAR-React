@@ -1,9 +1,15 @@
+import EditClient from './EditClient';
+import { useState } from 'react';
 const Client = ({ client, onDelete, onEdit }) => {
+  const [showEditClient, setShowEditClient] = useState(false);
   return (
     <div className={`client ${client.reminder ? 'reminder' : ''}`}>
       <h3>
         Company: {client.company}
-        <button className='btn' onClick={onEdit}>
+        <button
+          className='btn'
+          onClick={() => setShowEditClient(!showEditClient)}
+        >
           Edit
         </button>
         <button
@@ -18,6 +24,7 @@ const Client = ({ client, onDelete, onEdit }) => {
       <p>Phone: {client.phone}</p>
       <p>Boiler A: {client.boilerA}</p>
       <p>Email: {client.email}</p>
+      {showEditClient && <EditClient />}
     </div>
   );
 };

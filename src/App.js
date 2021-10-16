@@ -3,11 +3,11 @@ import './App.css';
 import Header from './components/Header';
 import Clients from './components/Clients';
 import AddClient from './components/AddClient';
-import EditClient from './components/EditClient';
+/* import EditClient from './components/EditClient'; */
 
 const App = () => {
   const [showAddClient, setShowAddClient] = useState(false);
-  const [showEditClient, setShowEditClient] = useState(false);
+  /*   const [showEditClient, setShowEditClient] = useState(false); */
 
   const [clients, setClients] = useState([]);
 
@@ -92,12 +92,12 @@ const App = () => {
         <Clients
           clients={clients}
           onDelete={deleteClient}
-          onEdit={() => setShowEditClient(!showEditClient)}
+          onEdit={editClient}
         />
       ) : (
         'No Clients'
       )}
-      {showEditClient && <EditClient onEdit={editClient} />}
+      {/* {showEditClient && <EditClient onEdit={addClient} />} */}
     </div>
   );
 };
